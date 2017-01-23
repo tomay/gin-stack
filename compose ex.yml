@@ -1,0 +1,20 @@
+postgis:
+  image: tomay/postgis
+  volumes:
+      - postgis_data:/var/lib/postgresql
+  ports:
+      - 25432:5432
+  links:
+    - database
+  container_name: postgis
+
+mapserver: 
+  image: tomay/mapserver
+  links: postgis
+  container_name: mapserver
+
+# database:
+#   image: postgis
+#   environment:
+#     LC_ALL: C.UTF-8
+#   container_name: postgis_database
